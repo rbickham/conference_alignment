@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @conference_history.errors.any? %>
+  <% @conference_history.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Conference History #<%= @conference_history.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_conference_history/<%= @conference_history.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for left -->
+      <div class="form-group">
+        <label for="left" class="control-label">
+          Left
+        </label>
+
+        <input type="text" id="left" name="left" placeholder="Left" class="form-control" value="<%= @conference_history.left %>">
+      </div>
+
+      <!-- Label and input for joined -->
+      <div class="form-group">
+        <label for="joined" class="control-label">
+          Joined
+        </label>
+
+        <input type="text" id="joined" name="joined" placeholder="Joined" class="form-control" value="<%= @conference_history.joined %>">
+      </div>
+
+      <!-- Label and input for conference_id -->
+      <div class="form-group">
+        <label for="conference_id" class="control-label">
+          Conference
+        </label>
+
+        <input type="text" id="conference_id" name="conference_id" placeholder="Conference" class="form-control" value="<%= @conference_history.conference_id %>">
+      </div>
+
+      <!-- Label and input for school_id -->
+      <div class="form-group">
+        <label for="school_id" class="control-label">
+          School
+        </label>
+
+        <input type="text" id="school_id" name="school_id" placeholder="School" class="form-control" value="<%= @conference_history.school_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Conference History
+      </button>
+      or
+      <a href="/conference_histories/<%= @conference_history.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

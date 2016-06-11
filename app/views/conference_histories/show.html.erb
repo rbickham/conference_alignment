@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h3>Conference History #<%= @conference_history.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+
+
+      <dt>School</dt>
+      <dd><%= @conference_history.school_id %></dd>
+
+      <dt>Conference</dt>
+      <dd><%= @conference_history.conference_id %></dd>
+
+      <dt>Joined</dt>
+      <dd><%= @conference_history.joined %></dd>
+
+      <dt>Left</dt>
+      <dd><%= @conference_history.left %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/conference_histories" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/conference_histories/<%= @conference_history.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_conference_history/<%= @conference_history.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<!-- Validation failure messages -->
+<% if @conference_history.errors.any? %>
+  <% @conference_history.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Conference History</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_conference_history" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for school_id -->
+      <div class="form-group">
+        <label for="school_id" class="control-label">
+          School
+        </label>
+        <%= select_tag(:school_id, options_from_collection_for_select(School.all, :id, :school_name, @conference_history.school_id), :class => "form-control") %>
+        <p class="help-block">
+          <a href="/schools/new">or add a new school</a>
+        </p>
+      </div>
+
+      <!-- Label and input for conference_id -->
+      <div class="form-group">
+        <label for="conference_id" class="control-label">
+          Conference
+        </label>
+        <%= select_tag(:conference_id, options_from_collection_for_select(Conference.all, :id, :conference_name, @conference_history.conference_id), :class => "form-control") %>
+        <p class="help-block">
+          <a href="/conferences/new">or add a new conference</a>
+        </p>
+      </div>
+
+
+      <!-- Label and input for joined -->
+      <div class="form-group">
+        <label for="joined" class="control-label">
+          Joined
+        </label>
+
+        <input type="text" id="joined" name="joined" placeholder="Joined" class="form-control" value="<%= @conference_history.joined %>">
+      </div>
+
+      <!-- Label and input for left -->
+      <div class="form-group">
+        <label for="left" class="control-label">
+          Left
+        </label>
+
+        <input type="text" id="left" name="left" placeholder="Left" class="form-control" value="<%= @conference_history.left %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Conference History
+      </button>
+      or
+      <a href="/conference_histories">Cancel</a>
+    </form>
+  </div>
+</div>

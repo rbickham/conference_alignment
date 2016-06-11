@@ -1,0 +1,86 @@
+<!-- Validation failure messages -->
+<% if @conference.errors.any? %>
+  <% @conference.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Conference #<%= @conference.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_conference/<%= @conference.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Logo
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @conference.image_url %>">
+      </div>
+
+      <!-- Label and input for conference_name -->
+      <div class="form-group">
+        <label for="conference_name" class="control-label">
+          Conference Name
+        </label>
+
+        <input type="text" id="conference_name" name="conference_name" placeholder="Conference name" class="form-control" value="<%= @conference.conference_name %>">
+      </div>
+
+      <!-- Label and input for conference_nickname -->
+      <div class="form-group">
+        <label for="conference_nickname" class="control-label">
+          Conference Nickname
+        </label>
+
+        <input type="text" id="conference_nickname" name="conference_nickname" placeholder="Conference nickname" class="form-control" value="<%= @conference.conference_nickname %>">
+      </div>
+
+
+      <!-- Label and input for founded -->
+      <div class="form-group">
+        <label for="founded" class="control-label">
+          Founded
+        </label>
+
+        <input type="text" id="founded" name="founded" placeholder="Founded" class="form-control" value="<%= @conference.founded %>">
+      </div>
+
+
+
+      <!-- Label and input for members -->
+      <div class="form-group">
+        <label for="members" class="control-label">
+          Members
+        </label>
+
+        <input type="text" id="members" name="members" placeholder="Members" class="form-control" value="<%= @conference.members %>">
+      </div>
+
+      <!-- Label and input for headquarters -->
+      <div class="form-group">
+        <label for="headquarters" class="control-label">
+          Headquarters
+        </label>
+
+        <input type="text" id="headquarters" name="headquarters" placeholder="Headquarters" class="form-control" value="<%= @conference.headquarters %>">
+      </div>
+
+
+      <button class="btn btn-warning">
+        Update Conference
+      </button>
+      or
+      <a href="/conferences/<%= @conference.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

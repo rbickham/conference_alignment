@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h3><%= @conference.conference_name %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+
+      <dt>Logo</dt>
+      <dd><img src="<%= @conference.image_url %>" width="100" height="50"></dd>
+
+      <dt>Conference name</dt>
+      <dd><%= @conference.conference_name %></dd>
+
+      <dt>Conference nickname</dt>
+      <dd><%= @conference.conference_nickname %></dd>
+
+      <dt>Founded</dt>
+      <dd><%= @conference.founded %></dd>
+
+      <dt>Members</dt>
+      <dd><%= @conference.members %></dd>
+
+      <dt>Headquarters</dt>
+      <dd><%= @conference.headquarters %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/conferences" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/conferences/<%= @conference.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_conference/<%= @conference.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+<ul class="list-group">
+  <% @conference.conference_histories.each do |conference_history| %>
+    <li class="list-group-item">
+      <a href="/schools/<%= conference_history.school_id %>">
+        <%= conference_history.school.school_name %>
+      </a>
+    </li>
+  <% end %>
+</ul>

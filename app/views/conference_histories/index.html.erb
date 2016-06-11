@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1>
+    Conference Histories
+    <a href="/conference_histories/new" class="btn btn-lg btn-success">New Conference history</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>School</th>
+        <th>Conference</th>
+        <th>Joined</th>
+        <th>Left</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @conference_histories.each do |conference_history| %>
+      <tr>
+
+        <td>
+          <a href="/schools/<%= conference_history.school_id %>">
+            <%= conference_history.school.school_name %>
+          </a>
+        </td>
+
+        <td>
+          <a href="/conferences/<%= conference_history.conference_id %>">
+            <%= conference_history.conference.conference_name %>
+          </a>
+        </td>
+
+        <td><%= conference_history.joined %></td>
+
+        <td><%= conference_history.left %></td>
+
+        <td>
+          <a href="/conference_histories/<%= conference_history.id %>" class="btn btn-primary">Show</a>
+          <a href="/conference_histories/<%= conference_history.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_conference_history/<%= conference_history.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

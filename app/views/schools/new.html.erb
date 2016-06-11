@@ -1,0 +1,75 @@
+<!-- Validation failure messages -->
+<% if @school.errors.any? %>
+  <% @school.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add School</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_school" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Logo
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @school.image_url %>">
+      </div>
+
+
+      <!-- Label and input for school_name -->
+      <div class="form-group">
+        <label for="school_name" class="control-label">
+          School Name
+        </label>
+
+        <input type="text" id="school_name" name="school_name" placeholder="School name" class="form-control" value="<%= @school.school_name %>">
+      </div>
+
+      <!-- Label and input for school_nickname -->
+      <div class="form-group">
+        <label for="school_nickname" class="control-label">
+          School Nickname
+        </label>
+
+        <input type="text" id="school_nickname" name="school_nickname" placeholder="School nickname" class="form-control" value="<%= @school.school_nickname %>">
+      </div>
+
+      <!-- Label and input for conference_name -->
+      <div class="form-group">
+        <label for="conference_name" class="control-label">
+          Conference Name
+        </label>
+
+        <input type="text" id="conference_name" name="conference_name" placeholder="Conference name" class="form-control" value="<%= @school.conference_name %>">
+      </div>
+
+
+      <!-- Label and input for joined -->
+      <div class="form-group">
+        <label for="joined" class="control-label">
+          Joined
+        </label>
+
+        <input type="text" id="joined" name="joined" placeholder="Joined" class="form-control" value="<%= @school.joined %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create School
+      </button>
+      or
+      <a href="/schools">Cancel</a>
+    </form>
+  </div>
+</div>
